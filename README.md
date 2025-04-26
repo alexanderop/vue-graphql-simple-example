@@ -1,6 +1,41 @@
-# Vue 3 + TypeScript + Vite
+# Vue 3 + GraphQL Tutorial Project
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This repository contains the example code for a blog post explaining how to integrate GraphQL with Vue 3. It demonstrates how to build a modern web application using:
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
-# vue-graphql-simple-example
+- Vue 3 with TypeScript
+- GraphQL for data fetching
+- Vite as the build tool
+- Script Setup syntax for Composition API
+
+## Purpose
+
+This project serves as a practical example to help developers understand how to:
+- Set up a Vue 3 project with GraphQL
+- Implement GraphQL queries and mutations in Vue components
+- Use TypeScript for better type safety
+- Structure a Vue 3 application with GraphQL integration
+
+## Getting Started
+
+1. Clone this repository
+2. Install dependencies:
+```bash
+npm install
+```
+3. Run the development server:
+```bash
+npm run dev
+```
+
+## Project Structure
+
+- `src/` - Contains the main application code
+  - `components/` - Vue components
+  - `plugins/` - Vue plugins and configurations
+  - `assets/` - Static assets
+
+## Additional Resources
+
+- [Vue 3 Documentation](https://vuejs.org/)
+- [GraphQL Documentation](https://graphql.org/)
+- [Vue Script Setup Documentation](https://v3.vuejs.org/api/sfc-script-setup.html)
