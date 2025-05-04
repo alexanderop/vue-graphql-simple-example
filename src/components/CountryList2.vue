@@ -1,9 +1,19 @@
 <script setup lang="ts">
 import { useQuery } from '@vue/apollo-composable'
-import { AllCountriesDocument } from '../gql/graphql'
+import { graphql } from '../gql'
 import { computed } from 'vue'
 
-const { result, loading, error } = useQuery(AllCountriesDocument)
+const COUNTRIES_QUERY = graphql(`
+  query AllCountries2 {
+    countries {
+      code2
+      name
+      emoji
+    }
+  }
+`)
+
+const { result, loading, error } = useQuery(COUNTRIES_QUERY)
 const countries = computed(() => result.value?.countries)
 </script>
 
