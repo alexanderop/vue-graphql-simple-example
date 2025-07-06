@@ -1,0 +1,7 @@
+# Language information fragment
+fragment LanguageInfo on Language {
+  code
+  name
+  native
+  rtl
+}

@@ -2,19 +2,31 @@
 import { useQuery } from '@vue/apollo-composable'
 import { graphql } from '../gql'
 import { computed } from 'vue'
+import { useFragment } from '../gql/fragment-masking'
+
+const CountryBasicInfoFragment = graphql(`
+  fragment CountryBasicInfo on Country {
+    code
+    name
+    emoji
+    capital
+  }
+`)
 
 const COUNTRIES_QUERY = graphql(`
   query AllCountries2 {
     countries {
-      code2
-      name
-      emoji
+      ...CountryBasicInfo
     }
   }
 `)
 
 const { result, loading, error } = useQuery(COUNTRIES_QUERY)
-const countries = computed(() => result.value?.countries)
+const countries = computed(() => 
+  result.value?.countries.map(country => 
+    useFragment(CountryBasicInfoFragment, country)
+  ) || []
+)
 </script>
 
 <template>

@@ -1,0 +1,8 @@
+# Basic information fragment for Country type
+# This fragment contains the most commonly used fields
+fragment CountryBasicInfo on Country {
+  code
+  name
+  emoji
+  capital
+}

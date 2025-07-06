@@ -1,0 +1,10 @@
+# Detailed information fragment for Country type
+# This fragment extends CountryBasicInfo with additional fields
+fragment CountryDetails on Country {
+  ...CountryBasicInfo
+  phone
+  currency
+  continent {
+    name
+  }
+}

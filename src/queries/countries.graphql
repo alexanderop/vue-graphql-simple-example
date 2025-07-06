@@ -1,7 +1,5 @@
 query AllCountries {
   countries {
-    code
-    name
-    emoji
+    ...CountryBasicInfo
   }
 }
