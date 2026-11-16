@@ -8,7 +8,8 @@
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview",
     "codegen": "graphql-codegen --config codegen.ts",
-    "codegen:watch": "graphql-codegen --watch --config codegen.ts"
+    "codegen:watch": "graphql-codegen --watch --config codegen.ts",
+    "test": "vitest run"
   },
   "dependencies": {
     "@apollo/client": "^3.13.8",
@@ -19,14 +20,25 @@
     "vue": "^3.5.13"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "5.0.5",
-    "@graphql-codegen/client-preset": "4.8.0",
+    "@graphql-codegen/cli": "^8.0.0",
+    "@graphql-codegen/client-preset": "^7.0.0",
     "@graphql-codegen/introspection": "4.0.3",
     "@parcel/watcher": "^2.5.1",
     "@vitejs/plugin-vue": "^5.2.2",
+    "@vitest/browser-playwright": "^5.1.0",
     "@vue/tsconfig": "^0.7.0",
-    "typescript": "~5.7.2",
+    "graphql-codegen-typescript-mock-data": "^5.2.0",
+    "msw": "^3.0.6",
+    "playwright": "^1.65.1",
+    "typescript": "5.9",
     "vite": "^6.3.1",
+    "vitest": "^5.1.0",
+    "vitest-browser-vue": "^3.1.0",
     "vue-tsc": "^2.2.8"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }

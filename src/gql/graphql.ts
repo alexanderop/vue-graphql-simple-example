@@ -1,208 +1,65 @@
 /* eslint-disable */
-import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
-export type Maybe<T> = T | null;
-export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+/** Internal type. DO NOT USE DIRECTLY. */
+type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+/** Internal type. DO NOT USE DIRECTLY. */
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
-/** All built-in and custom scalars, mapped to their actual values */
-export type Scalars = {
-  ID: { input: string; output: string; }
-  String: { input: string; output: string; }
-  Boolean: { input: boolean; output: boolean; }
-  Int: { input: number; output: number; }
-  Float: { input: number; output: number; }
-};
+import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
+export type CountryBasicInfoFragment = { code: string, name: string, emoji: string, capital: string | null } & { ' $fragmentName'?: 'CountryBasicInfoFragment' };
 
-export type Continent = {
-  __typename?: 'Continent';
-  code: Scalars['ID']['output'];
-  countries: Array<Country>;
-  name: Scalars['String']['output'];
-};
-
-export type ContinentFilterInput = {
-  code?: InputMaybe<StringQueryOperatorInput>;
-};
-
-export type Country = {
-  __typename?: 'Country';
-  awsRegion: Scalars['String']['output'];
-  capital?: Maybe<Scalars['String']['output']>;
-  code: Scalars['ID']['output'];
-  continent: Continent;
-  currencies: Array<Scalars['String']['output']>;
-  currency?: Maybe<Scalars['String']['output']>;
-  emoji: Scalars['String']['output'];
-  emojiU: Scalars['String']['output'];
-  languages: Array<Language>;
-  name: Scalars['String']['output'];
-  native: Scalars['String']['output'];
-  phone: Scalars['String']['output'];
-  phones: Array<Scalars['String']['output']>;
-  states: Array<State>;
-  subdivisions: Array<Subdivision>;
-};
-
-
-export type CountryNameArgs = {
-  lang?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type CountryFilterInput = {
-  code?: InputMaybe<StringQueryOperatorInput>;
-  continent?: InputMaybe<StringQueryOperatorInput>;
-  currency?: InputMaybe<StringQueryOperatorInput>;
-  name?: InputMaybe<StringQueryOperatorInput>;
-};
-
-export type Language = {
-  __typename?: 'Language';
-  code: Scalars['ID']['output'];
-  name: Scalars['String']['output'];
-  native: Scalars['String']['output'];
-  rtl: Scalars['Boolean']['output'];
-};
-
-export type LanguageFilterInput = {
-  code?: InputMaybe<StringQueryOperatorInput>;
-};
-
-export type Query = {
-  __typename?: 'Query';
-  continent?: Maybe<Continent>;
-  continents: Array<Continent>;
-  countries: Array<Country>;
-  country?: Maybe<Country>;
-  language?: Maybe<Language>;
-  languages: Array<Language>;
-};
-
-
-export type QueryContinentArgs = {
-  code: Scalars['ID']['input'];
-};
-
-
-export type QueryContinentsArgs = {
-  filter?: InputMaybe<ContinentFilterInput>;
-};
-
-
-export type QueryCountriesArgs = {
-  filter?: InputMaybe<CountryFilterInput>;
-};
-
-
-export type QueryCountryArgs = {
-  code: Scalars['ID']['input'];
-};
-
-
-export type QueryLanguageArgs = {
-  code: Scalars['ID']['input'];
-};
-
-
-export type QueryLanguagesArgs = {
-  filter?: InputMaybe<LanguageFilterInput>;
-};
-
-export type State = {
-  __typename?: 'State';
-  code?: Maybe<Scalars['String']['output']>;
-  country: Country;
-  name: Scalars['String']['output'];
-};
-
-export type StringQueryOperatorInput = {
-  eq?: InputMaybe<Scalars['String']['input']>;
-  in?: InputMaybe<Array<Scalars['String']['input']>>;
-  ne?: InputMaybe<Scalars['String']['input']>;
-  nin?: InputMaybe<Array<Scalars['String']['input']>>;
-  regex?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Subdivision = {
-  __typename?: 'Subdivision';
-  code: Scalars['ID']['output'];
-  emoji?: Maybe<Scalars['String']['output']>;
-  name: Scalars['String']['output'];
-};
-
-export type CountryBasicInfoFragment = { __typename?: 'Country', code: string, name: string, emoji: string, capital?: string | null } & { ' $fragmentName'?: 'CountryBasicInfoFragment' };
-
-export type ContinentSummary_ContinentFragmentFragment = { __typename?: 'Continent', code: string, name: string } & { ' $fragmentName'?: 'ContinentSummary_ContinentFragmentFragment' };
+export type ContinentSummary_ContinentFragmentFragment = { code: string, name: string } & { ' $fragmentName'?: 'ContinentSummary_ContinentFragmentFragment' };
 
 export type ContinentDetail_ContinentFragmentFragment = (
-  { __typename?: 'Continent', countries: Array<(
-    { __typename?: 'Country', languages: Array<{ __typename?: 'Language', code: string, name: string }> }
+  { countries: Array<(
+    { languages: Array<{ code: string, name: string }> }
     & { ' $fragmentRefs'?: { 'CountryBasicInfoFragment': CountryBasicInfoFragment } }
   )> }
   & { ' $fragmentRefs'?: { 'ContinentSummary_ContinentFragmentFragment': ContinentSummary_ContinentFragmentFragment } }
 ) & { ' $fragmentName'?: 'ContinentDetail_ContinentFragmentFragment' };
 
 export type ContinentsWithDetailsQueryVariables = Exact<{
-  includeDetails: Scalars['Boolean']['input'];
+  includeDetails: boolean;
 }>;
 
 
-export type ContinentsWithDetailsQuery = { __typename?: 'Query', continents: Array<(
-    { __typename?: 'Continent' }
-    & { ' $fragmentRefs'?: { 'ContinentSummary_ContinentFragmentFragment': ContinentSummary_ContinentFragmentFragment;'ContinentDetail_ContinentFragmentFragment': ContinentDetail_ContinentFragmentFragment } }
-  )> };
+export type ContinentsWithDetailsQuery = { continents: Array<{ ' $fragmentRefs'?: { 'ContinentSummary_ContinentFragmentFragment': ContinentSummary_ContinentFragmentFragment } } & { ' $fragmentRefs'?: { 'ContinentDetail_ContinentFragmentFragment': ContinentDetail_ContinentFragmentFragment } }> };
 
-export type CountryCard_CountryFragmentFragment = { __typename?: 'Country', code: string, name: string, emoji: string, capital?: string | null, phone: string, currency?: string | null } & { ' $fragmentName'?: 'CountryCard_CountryFragmentFragment' };
+export type CountryCard_CountryFragmentFragment = { code: string, name: string, emoji: string, capital: string | null, phone: string, currency: string | null } & { ' $fragmentName'?: 'CountryCard_CountryFragmentFragment' };
 
 export type AllCountries2QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AllCountries2Query = { __typename?: 'Query', countries: Array<(
-    { __typename?: 'Country' }
-    & { ' $fragmentRefs'?: { 'CountryBasicInfoFragment': CountryBasicInfoFragment } }
-  )> };
+export type AllCountries2Query = { countries: Array<{ ' $fragmentRefs'?: { 'CountryBasicInfoFragment': CountryBasicInfoFragment } }> };
 
 export type CountriesWithDetailsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CountriesWithDetailsQuery = { __typename?: 'Query', countries: Array<(
-    { __typename?: 'Country', code: string }
+export type CountriesWithDetailsQuery = { countries: Array<(
+    { code: string }
     & { ' $fragmentRefs'?: { 'CountryCard_CountryFragmentFragment': CountryCard_CountryFragmentFragment } }
   )> };
 
-export type LanguageItem_LanguageFragmentFragment = { __typename?: 'Language', code: string, name: string, native: string, rtl: boolean } & { ' $fragmentName'?: 'LanguageItem_LanguageFragmentFragment' };
+export type LanguageItem_LanguageFragmentFragment = { code: string, name: string, native: string, rtl: boolean } & { ' $fragmentName'?: 'LanguageItem_LanguageFragmentFragment' };
 
-export type CountryWithLanguages_CountryFragmentFragment = { __typename?: 'Country', code: string, name: string, emoji: string, languages: Array<(
-    { __typename?: 'Language' }
-    & { ' $fragmentRefs'?: { 'LanguageItem_LanguageFragmentFragment': LanguageItem_LanguageFragmentFragment } }
-  )> } & { ' $fragmentName'?: 'CountryWithLanguages_CountryFragmentFragment' };
+export type CountryWithLanguages_CountryFragmentFragment = { code: string, name: string, emoji: string, languages: Array<{ ' $fragmentRefs'?: { 'LanguageItem_LanguageFragmentFragment': LanguageItem_LanguageFragmentFragment } }> } & { ' $fragmentName'?: 'CountryWithLanguages_CountryFragmentFragment' };
 
 export type CountryWithLanguagesQueryVariables = Exact<{
-  code: Scalars['ID']['input'];
+  code: string | number;
 }>;
 
 
-export type CountryWithLanguagesQuery = { __typename?: 'Query', country?: (
-    { __typename?: 'Country' }
-    & { ' $fragmentRefs'?: { 'CountryWithLanguages_CountryFragmentFragment': CountryWithLanguages_CountryFragmentFragment } }
-  ) | null };
+export type CountryWithLanguagesQuery = { country: { ' $fragmentRefs'?: { 'CountryWithLanguages_CountryFragmentFragment': CountryWithLanguages_CountryFragmentFragment } } | null };
 
 export type AllCountriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AllCountriesQuery = { __typename?: 'Query', countries: Array<(
-    { __typename?: 'Country' }
-    & { ' $fragmentRefs'?: { 'CountryBasicInfoFragment': CountryBasicInfoFragment } }
-  )> };
+export type AllCountriesQuery = { countries: Array<{ ' $fragmentRefs'?: { 'CountryBasicInfoFragment': CountryBasicInfoFragment } }> };
 
 export type CountryDetailsFragment = (
-  { __typename?: 'Country', phone: string, currency?: string | null, continent: { __typename?: 'Continent', name: string } }
+  { phone: string, currency: string | null, continent: { name: string } }
   & { ' $fragmentRefs'?: { 'CountryBasicInfoFragment': CountryBasicInfoFragment } }
 ) & { ' $fragmentName'?: 'CountryDetailsFragment' };
 
-export type LanguageInfoFragment = { __typename?: 'Language', code: string, name: string, native: string, rtl: boolean } & { ' $fragmentName'?: 'LanguageInfoFragment' };
+export type LanguageInfoFragment = { code: string, name: string, native: string, rtl: boolean } & { ' $fragmentName'?: 'LanguageInfoFragment' };
 
 export const ContinentSummary_ContinentFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContinentSummary_ContinentFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Continent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]} as unknown as DocumentNode<ContinentSummary_ContinentFragmentFragment, unknown>;
 export const CountryBasicInfoFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CountryBasicInfo"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Country"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"emoji"}},{"kind":"Field","name":{"kind":"Name","value":"capital"}}]}}]} as unknown as DocumentNode<CountryBasicInfoFragment, unknown>;
